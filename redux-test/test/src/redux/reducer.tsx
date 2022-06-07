@@ -15,7 +15,10 @@ export const reducer = (state = initialState, action: mainActionType) => {
     switch(action.type) {
         case ADD : {
             return {
-                todos: [...state.todos, action.todo]
+                todos:[
+                    ...state.todos,
+                    action.todo
+                ]
             };
         }
         case DELETE : {
@@ -24,9 +27,7 @@ export const reducer = (state = initialState, action: mainActionType) => {
             };
         };
          default: {
-           return {
-               todos: [state]
-        };  
+           return state
       }
     }
     

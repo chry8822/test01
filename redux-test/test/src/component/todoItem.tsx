@@ -7,8 +7,9 @@ import { delete_todo } from "../redux/actions";
 
 const TodoItem = (todo:any) => {
     const dispatch = useDispatch();
-
+    
     const { id, title, isComplete } = todo;
+    console.log(title,id)
  
     const handleClick = () => {
         dispatch(delete_todo(id));
@@ -20,6 +21,7 @@ const TodoItem = (todo:any) => {
             <S.TextColumn>
                 <div>
                     <S.Text>
+                        asdfsadf
                        {title}
                     </S.Text>
                     <S.X onClick={handleClick}>{isComplete || "X"}</S.X>
