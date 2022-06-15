@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn" onclick="create_El()">button</button>
+    <button class="btn" onclick="clearAll()">Clear</button>
+    <ul class="parent"></ul>
+    
+    <script>
+        let parentEl = document.querySelector(".parent");
+        let count = 1;
+
+        function create_El(e) {
+            let newLiTag = document.createElement("li");
+            newLiTag.setAttribute("class", "newLiTag");
+            newLiTag.innerHTML = "new" + count;
+            parentEl.appendChild(newLiTag)
+            count++;
+            
+            newLiTag.addEventListener("click", function(e){ this.remove() }) 
+        }
+
+        function clearAll() {
+            while(parentEl.firstChild) {
+                parentEl.firstChild.remove();
+            }
+            count = 1;
+        }
+    </script>
+</body>
+</html>
