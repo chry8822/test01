@@ -41,20 +41,30 @@ let tempTimeFormat = "HH:mm:ss";
 
 const Hero = () => {
    const [time,setTime] = useState()
-   const [test,setTest] = useState()
+   const [test,setTest] = useState("")
+   console.log(test)
   
   useEffect(() => {
     setTimeout(() => {
       setTime(moment().subtract(1, "second").format(tempTimeFormat))
     },1000);
   },[time])
-
+  
   const phoneRef = useRef();
-  let Phone = phoneRef.current
-
+  let phone = phoneRef.current
+  
   const submitPhone = useCallback (()=> {
-    console.log("123")
-  },[])
+    let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    if (regPhone.test(test)) {
+      alert("true")
+    } else {
+      alert("false")
+    }
+  },[test])
+  
+  const changeText = (e) => {
+      setTest(e.target.value.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`))
+  }
   
   return (
     <S.Background>
@@ -64,7 +74,7 @@ const Hero = () => {
             {moment().format(formatDate)} <br/> 
             {time}
           </div>
-          <input type="text" id='text' ref={Phone}/>
+          <input type="number" ref={phoneRef} onChange={changeText} placeholder={test} maxLength='11'/>
           <input type="button" onClick={() => submitPhone()} value="확인" />
         </S.Title>
       </S.Wrapper>
