@@ -74,6 +74,14 @@ border: 1px solid black;
 margin-bottom: 10px;
 display: flex;
 justify-content: space-between;
+line-height: 25px
+`
+
+const ItemContent = styled.div`
+height:100%;
+width:400px;
+text-align:left;
+word-wrap: break-word;
 `
 
 const TitleContent = styled.div`
@@ -107,13 +115,19 @@ const TodoApp = () => {
         setInput("");
     }
 
+    const handleAddInputValue = (e:any) => {
+        if(e.target.value.length <= 50){
+            setInput(e.target.value)
+        }
+    }
+
     const renderTodoList = () => {
     return todos.map((item:any,idx:any) => {
             return (
                 <TodoItem key={idx}>
-                    <span>
+                    <ItemContent>
                         {item.text}
-                    </span>
+                    </ItemContent>
                     <ButtonRemove
                         onClick={()=>
                             dispatch(removeTodo(item.id))
@@ -149,7 +163,7 @@ const TodoApp = () => {
                                 type="text" 
                                 value={input}
                                 onChange={(e)=>
-                                    setInput(e.target.value)
+                                    handleAddInputValue(e)
                                 }    
                                 />
                         </form>
