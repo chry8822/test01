@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,8 +15,10 @@ function App() {
   let strike:number = 0;
   let ball:number = 0;
   while(count < 10){
-    let input:any = prompt("input number");
-    let inputArray = input.split('');
+    console.log("asfasdfdas")
+    let input:any = prompt("input number") || "";
+    let inputArray:any = input.split('');
+    // console.log(inputArray)
     strike = 0;
     ball = 0;
     count ++;
@@ -47,7 +49,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+          <input type="text"
+            onChange={()=>{
 
+            }}
+          />
       </header>
     </div>
   );
