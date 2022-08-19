@@ -11,59 +11,59 @@ function App() {
   )
 
 
-  const renderGame = useMemo(() => {
-    let data: any[] = [];
-    dummy.forEach((item: any, idx: any) => {
-      if (select.player <= item.player && select.genre === 0 && select.level === 0) { // 인원
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } else if (select.genre === item.genre && select.player === 0 && select.level === 0) { // 장르
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } else if (select.level === item.level && select.player === 0 && select.genre === 0) { // 난이도
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } else if (select.player <= item.player && select.genre === item.genre && select.level === 0){ // 인원 && 장르
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } else if (select.level === item.level && select.genre === item.genre && select.player === 0){ // 레벨 && 장르
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } else if (select.player <= item.player && select.level === item.level && select.genre === item.genre){ // 레벨 && 인원
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      } 
-      else if (select.level === item.level && select.genre === item.genre && select.player <= item.player){ //레벨 && 장르 && 인원
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      }
+  // const renderGame = useMemo(() => {
+  //   let data: any[] = [];
+  //   dummy.forEach((item: any, idx: any) => {
+  //     if (select.player <= item.player && select.genre === 0 && select.level === 0) { // 인원
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } else if (select.genre === item.genre && select.player === 0 && select.level === 0) { // 장르
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } else if (select.level === item.level && select.player === 0 && select.genre === 0) { // 난이도
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } else if (select.player <= item.player && select.genre === item.genre && select.level === 0){ // 인원 && 장르
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } else if (select.level === item.level && select.genre === item.genre && select.player === 0){ // 레벨 && 장르
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } else if (select.player <= item.player && select.level === item.level && select.genre === item.genre){ // 레벨 && 인원
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     } 
+  //     else if (select.level === item.level && select.genre === item.genre && select.player <= item.player){ //레벨 && 장르 && 인원
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     }
 
 
-      else if (
-        select.player === 0 && select.genre === 0 && select.level === 0
-      ) {
-        data.push(
-          <li key={idx}>{item.title}</li>
-        )
-        return
-      }
-    })
-    return data
-  }, [select.player, select.genre, select.level])
+  //     else if (
+  //       select.player === 0 && select.genre === 0 && select.level === 0
+  //     ) {
+  //       data.push(
+  //         <li key={idx}>{item.title}</li>
+  //       )
+  //       return
+  //     }
+  //   })
+  //   return data
+  // }, [select.player, select.genre, select.level])
 
 
   const test = useMemo(() => {
@@ -76,7 +76,7 @@ function App() {
       }else if(select.level === item.level){
         return item
       }else if(select.player === 0 && select.genre === 0 && select.level ===0){
-        return
+        return item
       }
     })
 
