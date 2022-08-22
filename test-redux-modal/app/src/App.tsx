@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useRef, useMemo, useCallback} from 'react';
 import Slider from "react-slick";
 import styled from 'styled-components'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './App.css'
 
 const Container = styled.div`
     margin-top: 10px;
@@ -13,9 +14,10 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
 margin: 40px auto; 
-width: 95%;
-`;
+width: calc(90% + 40px);
+position: relative;
 
+`;
 
 
 const H3 = styled.div`
@@ -28,17 +30,64 @@ const H3 = styled.div`
   text-align:center
 `;
 
+const ButtonWrapper = styled.div`
+  display: block;
+`;
+
+const PrevButton = styled.div`
+  top:0;
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  font-size: 0;
+  text-indent: -9999px;
+  z-index: 3;
+  left: 0;
+  background-color: gray;
+  opacity: 0.5;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+  `
+
+
+  const NextButton = styled.div`
+  top:0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  font-size: 0;
+  text-indent: -9999px;
+  z-index: 3;
+  background-color: gray;
+  opacity: 0.5;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+  `
+
 const App = () => {
+
+  const sliderRef = useRef<any>(null)
+
 
   const renderSlider = () => {
     let settings = {
       dots: false,
       Infinity: true,
-      speed: 300,
+      speed: 100,
       slidesToShow: 5,
       slidesToScroll: 1,
       swipeToSlide:true,
       initialSlide: 0,
+      arrows:false,
       responsive: [
         {
           breakpoint: 1024,
@@ -67,14 +116,14 @@ const App = () => {
       ]
     }
     return (
-      <Slider {...settings}>
+      <Slider {...settings} ref={sliderRef}>
         {renderSliderItem()}
       </Slider>
     )
     
   }
 
-  const  renderSliderItem = () => {
+  const renderSliderItem = () => {
     let data: any[] = [1,2,3,4,5,6,7,8,9,10]
     let render: any[] = [];
     data.forEach((item: any, idx:any) => {
@@ -85,6 +134,14 @@ const App = () => {
       console.log(render)
     return render
   } 
+
+  const sliderMove = useCallback((type?:any) => {
+     if(type === "next"){
+      return sliderRef?.current.slickNext();
+     }else{
+      return sliderRef?.current.slickPrev();
+     }
+  },[]) 
   
 
 
@@ -93,6 +150,14 @@ const App = () => {
       <Container>
         <Wrapper>
           {renderSlider()}
+          <ButtonWrapper>
+            <PrevButton onClick={()=> {
+              sliderMove()
+            }}></PrevButton>
+            <NextButton onClick={()=> {
+              sliderMove("next")
+            }}></NextButton>
+          </ButtonWrapper>
         </Wrapper>
       </Container>
     </div>
