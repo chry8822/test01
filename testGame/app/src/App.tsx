@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { dummy } from './testDummy'
 
 function App() {
@@ -11,92 +11,142 @@ function App() {
   )
 
 
-  // const renderGame = useMemo(() => {
-  //   let data: any[] = [];
-  //   dummy.forEach((item: any, idx: any) => {
-  //     if (select.player <= item.player && select.genre === 0 && select.level === 0) { // 인원
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } else if (select.genre === item.genre && select.player === 0 && select.level === 0) { // 장르
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } else if (select.level === item.level && select.player === 0 && select.genre === 0) { // 난이도
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } else if (select.player <= item.player && select.genre === item.genre && select.level === 0){ // 인원 && 장르
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } else if (select.level === item.level && select.genre === item.genre && select.player === 0){ // 레벨 && 장르
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } else if (select.player <= item.player && select.level === item.level && select.genre === item.genre){ // 레벨 && 인원
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     } 
-  //     else if (select.level === item.level && select.genre === item.genre && select.player <= item.player){ //레벨 && 장르 && 인원
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     }
-
-
-  //     else if (
-  //       select.player === 0 && select.genre === 0 && select.level === 0
-  //     ) {
-  //       data.push(
-  //         <li key={idx}>{item.title}</li>
-  //       )
-  //       return
-  //     }
-  //   })
-  //   return data
-  // }, [select.player, select.genre, select.level])
-
-
   const test = useMemo(() => {
-    let data:any ;
-    data = dummy.filter((item:any, idx:any) => {
-      if(select.player >= item.player){
-        return item
-      }else if(select.genre === item.genre){
-        return item
-      }else if(select.level === item.level){
-        return item
-      }else if(select.player === 0 && select.genre === 0 && select.level ===0){
-        return item
+    let data:any[] = dummy;
+      if(select.player){
+        data = data.filter((item:any) => select.player >= item.player)
+        // 선택한 인원수와 같거나 작은 데이터들 할당
+      }if(select.genre){
+        data = data.filter((item:any) => select.genre === item.genre)
+        // 선택한 장르와 같은 데이터 할당
+      }if(select.level){
+        data = data.filter((item:any) => select.level === item.level)
+        // 선택한 난이도와 같은 데이터 할당
+      }if(data.length <= 0){
+        // 데이터가 비어 있으면 데이터 title 추가
+        data[0] = {
+          title : "조건에 맞는 게임 없음"
+        }
       }
-    })
+      return data
+    },[select.player, select.genre, select.level]);
+    
+    // 필터링 함수와 렌더링 함수 분리
 
-    return (
-      data.map((item:any, idx:any) => {
-        return (
-          <li key={idx}>{item.title}</li>
-        )
+    const renderData = useMemo(() => {
+      return (
+        test.map((item:any, idx:number)=>{
+            return (
+              <li key={idx}>{item.title}</li>
+            )
       })
     )
-  },[select.player, select.genre, select.level])
+  },[test])
+  
 
 
+  let numbers = [1,5,3,3,5,10]
+  let result:number = 0
+  // numbers.map((item:number,idx:any) => {
+  //   result += idx
+  // })
+
+  for(let i = 0; i < numbers.length; i ++){
+    result += numbers[i]
+  }
+
+  let text:any = "Lorem ipsum dolor, sit amet consectetur adipisicing."
+  let split:any = text.replace(",","").replace(".","")
+  split = split.split(" ");
+
+  // split.map((item:any, idx:any) => {
+  //   return (
+  //     console.log(
+  //       idx + 1 + "." + item
+  //     )
+  //   )
+  // })
+  // 결과
+  // 1.Lorem
+  // 2.ipsum
+  // 3.dolor
+  // 4.sit
+  // 5.amet
+  // 6.consectetur
+  // 7.adipisicing
+
+
+  let textRemoveComma:any = text.replace(",","").replace(".","");
+  let names:string[] = textRemoveComma.split(" ");
+  const [search, setSearch] = useState<string>("")
+
+  // const submit = (e:any) => {
+  //   e.preventDefault();
+  //   checkName(search)
+  // }
+
+  // const checkName = (data:any) => {
+  //   names.map((item:any,idx:any) => {
+  //       console.log(
+  //         item == data ? idx + "." + item : ""
+  //     )
+  //   })
+  // }
+
+  // const market:any = {
+  //   name: "emart",
+  //   fruits:[
+  //     {
+  //       name:"banana",
+  //       price: 4000
+  //     },
+  //     {
+  //       name:"apple",
+  //       price: 500
+  //     },
+  //     {
+  //       name:"melon",
+  //       price: 10000
+  //     },
+  //   ]
+  // }
+
+  // market.fruits.sort((next:any, prev:any) => {
+  //   return (
+  //     prev.price - next.price 
+  //   )
+  // })
+
+  // console.log(market.fruits)
+
+  // let nums:number[] = [1,2,3,4,5,6,7,8,9,10]
+  // nums.forEach((item:number) => {
+  //   console.log(item, item * item )
+  // })
+
+  let nums:number[] = [2,4,6,8,10,11,7];
+  // console.log(nums)
+  // nums.some((item:number, idx:number) => console.log(item % 2 === 0 ? idx + "." + "true" : idx + "." + "false"))
+  // console.log(nums.every((item:number, idx:number) => item % 2 == 0))
+  // console.log(nums.some((item:number, idx:number) => item % 2 == 0 ? idx + "." + "true" : idx + "." + "false"))
+
+  nums.every((item:number, idx:number) => {
+    console.log(item % 2 === 0)
+    return item % 2 === 0
+    })
 
   return (
     <div className="App">
+      {/* <form onSubmit={submit}>
+        <input type="text" value={search} onChange={(e)=> setSearch(e.target.value)}/>
+        <button type="submit" value="Submit">input</button>
+      </form> */}
+      {
+
+      }
       <div>
         <ul>
-          {/* {renderGame} */}
-          {test}
+          {renderData}
         </ul>
       </div>
       <form action="">
