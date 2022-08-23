@@ -1,9 +1,12 @@
-import React,{useRef, useMemo, useCallback} from 'react';
+import React,{useRef, useMemo, useCallback, useEffect} from 'react';
 import Slider from "react-slick";
 import styled from 'styled-components'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css'
+import { useDispatch } from 'react-redux';
+import Modal from '../../component/main/common/modal/modal'
+import { closeModal, openModal } from '../../redux/action/modal';
 
 const Container = styled.div`
     margin-top: 10px;
@@ -73,14 +76,19 @@ const PrevButton = styled.div`
   }
   `
 
+  const ItemWrapper = styled.div`
+    cursor:pointer 
+  `
+
 const App = () => {
 
+  const testRef = useRef<any>(null)
   const sliderRef = useRef<any>(null)
-
+  const dispatch = useDispatch()
 
   const renderSlider = () => {
     let settings = {
-      dots: false,
+      dots: true                                                                                                                          ,
       Infinity: true,
       speed: 100,
       slidesToShow: 5,
@@ -88,6 +96,14 @@ const App = () => {
       swipeToSlide:true,
       initialSlide: 0,
       arrows:false,
+      appendDots:() => (
+        <div
+          style={{
+            display:"noen"
+          }}
+        >
+        </div>
+      ),
       responsive: [
         {
           breakpoint: 1024,
@@ -123,15 +139,23 @@ const App = () => {
     
   }
 
+  const modalAction = () => {
+    dispatch(closeModal())
+  }
+
   const renderSliderItem = () => {
     let data: any[] = [1,2,3,4,5,6,7,8,9,10]
     let render: any[] = [];
     data.forEach((item: any, idx:any) => {
       render.push (
-        <div style={{textAlign:"center"}} key={idx}><H3>{item}</H3></div>
+        <ItemWrapper 
+          key={idx}
+          onClick={()=>{
+            dispatch(openModal({element:Modal, action:modalAction, content:item, title:item }))
+          }}
+          ><H3>{item}</H3></ItemWrapper>
         )
       })
-      console.log(render)
     return render
   } 
 
@@ -142,6 +166,18 @@ const App = () => {
       return sliderRef?.current.slickPrev();
      }
   },[]) 
+
+  useEffect(()=>{
+    const test = (e:any) => {
+      // console.log("tartget",e.target)
+      console.log(e.target.id)
+    }
+    window.addEventListener("mouseover", test);
+    return ()=>{
+      window.removeEventListener("mouseover",test)
+    }
+
+  },[])
   
 
 
@@ -149,7 +185,10 @@ const App = () => {
     <div className="App">
       <Container>
         <Wrapper>
-          {renderSlider()}
+          <div ref={testRef}>
+            {renderSlider()}
+            {renderSlider()}
+          </div>
           <ButtonWrapper>
             <PrevButton onClick={()=> {
               sliderMove()
