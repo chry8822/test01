@@ -65,7 +65,7 @@
     border-radius: 12px;
     padding: 30px 16px 16px;
     width: 100%;
-    transform: scale(0.7);
+    /* transform: scale(0.7); */
     opacity: 0;
     transition: all 0.2s ease-in-out;
     height: 600px;
@@ -81,17 +81,9 @@
     flex-direction: column;
 }
 
-.slick-initialized .slick-slide{
-    transition: all 0.3s;
+.slick-slider {
+    padding-right: 30px;
 }
-.slick-initialized .slick-slide:hover{
-    transform: scale(1.5);
-    z-index: 9999;
-}
-
-
-
-
 
 
 @media screen and (min-width: 800px) {
