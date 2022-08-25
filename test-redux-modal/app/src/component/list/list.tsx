@@ -2,42 +2,10 @@ import React, { useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick';
 import { closeModal, openModal } from '../../redux/action/modal';
-import styled from 'styled-components';
 import Modal from '../main/common/modal/modal';
-
-const ItemWrap = styled.div`
-    width: 200px;
-    height: 150px;
-    background-color:red;
-    display:flex;
-    color:white;
-    position:relative;
-    z-index:1;
-    transition: all 0.3s;
-    &:hover {
-        background-color:black;
-        transform: scale(1.5);
-        z-index:9999;
-    }
-    `
-// 리스트 아이템에 zindex 1 기본값 호버시 9999 로 좌우 아이템위로 올라탈수 있게
-    
-const Item = styled.div`
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%)
-`
-
-const StyleSlider = styled(Slider)`
-
-.slick-slide > div {
-  margin: 0 10px;
-}
-.slick-list {
-  margin: 0 -10px;
-}
-`
+import './list.scss';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const List = () => {
     const sliderRef = useRef<any>(null)
@@ -90,9 +58,9 @@ const List = () => {
             ]
         }
         return (
-            <StyleSlider {...settings} ref={sliderRef}>
+            <Slider {...settings} ref={sliderRef}>
                 {renderSliderItem()}
-            </StyleSlider>
+            </Slider>
         )
 
     }
@@ -106,13 +74,13 @@ const List = () => {
         let render: any[] = [];
         data.forEach((item: any, idx: any) => {
             render.push(
-                <ItemWrap
+                <div className='itemWrapper'
                     key={idx}
                     onClick={() => {
                         dispatch(openModal({ element: Modal, action: modalAction, content: item, title: item }))
                     }}>
-                    <Item>{item}</Item>
-                </ItemWrap>
+                    <div className='listItem'>{item}</div>
+                </div>
             )
         })
         return render
@@ -129,16 +97,20 @@ const List = () => {
 
     return (
         <>
-            <div style={{position:"relative"}}>
+            <div className='listWrap' >
                     {renderSlider()}
                     <button 
+                        className='prevBtn'
                         onClick={()=> sliderMove()}
-                        style={{position:"absolute" ,left:"0", top:"0", height:"100%"}}    
-                    >prev</button>
+                    >
+                        <ArrowBackIosIcon className='icon'/>
+                    </button>
                     <button 
+                        className='nextBtn'
                         onClick={()=> sliderMove("next")}
-                        style={{position:"absolute" ,right:"0", top:"0", height:"100%"}}    
-                    >next</button>
+                    >
+                        <ArrowForwardIosIcon className='icon'/>
+                    </button>
             </div>
         </>
     )

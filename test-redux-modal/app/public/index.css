@@ -1,3 +1,9 @@
+body {
+    margin:0
+}
+button {
+    border-style: none;
+}
 .modal {
     position: fixed;
     width: 100%;

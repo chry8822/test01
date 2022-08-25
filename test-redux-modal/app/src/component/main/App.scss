@@ -1,0 +1,17 @@
+:root {
+  --main-color: #141414;
+  --main-red: 	#E50914;
+  --main-green: #46d369;
+  --main-gray : #808080;
+}
+
+.App {
+  background-color: var(--main-color);
+  overflow: hidden;
+  z-index: -10;
+}
+
+
+.slick-slider{
+  padding-left: 30px
+}

@@ -1,0 +1,67 @@
+.slick-slider {
+    height: 100%;
+    .slick-slide > div {
+      margin: 0 10px;
+    }
+    .slick-list {
+      margin: 0 -10px;
+    }
+}
+
+.itemWrapper {
+    width: 200px;
+    height: 150px;
+    background-color:red;
+    display:flex;
+    color:white;
+    position:relative;
+    z-index:1;
+    transition: all 0.3s;
+    &:hover {
+        background-color:black;
+        transform: scale(1.5);
+        z-index:9999;
+    }
+}
+// 리스트 아이템에 zindex 1 기본값 호버시 9999 로 좌우 아이템위로 올라탈수 있게
+
+.listItem {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%)
+}
+
+.listWrap {
+    height: 100%;
+    margin: 20px 0 20px 0;
+    position: relative;
+    button{
+        background-color: var(--main-gray);
+        transition: all 0.3s;
+        opacity: 0.1;
+        .icon{
+            color:#fff;
+        }
+        &:hover{
+            background-color: var(--main-color);
+            opacity: 1;
+            .icon{
+                color:#fff;
+            }
+        }
+    }
+    .prevBtn{
+        position:absolute;
+        left:0; 
+        top:0; 
+        height:100%
+    }
+    .nextBtn{
+        position:absolute;
+        right:0; 
+        top:0; 
+        height:100%
+    }
+    
+}
