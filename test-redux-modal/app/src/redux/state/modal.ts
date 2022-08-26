@@ -5,6 +5,7 @@ export type ModalState = {
     actionType: string;
     action: Function | any;
     element: Function | any;
+    video: any
 }
 
 export const InitialModal: ModalState = {
@@ -13,5 +14,6 @@ export const InitialModal: ModalState = {
     title: "",
     actionType: "",
     action:null,
-    element:null
+    element:null,
+    video:null
 }

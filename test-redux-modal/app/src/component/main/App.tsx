@@ -6,6 +6,8 @@ import List from '../list/list';
 import NavBar from '../nav/nav';
 import ListContainer from '../list/listContainer';
 import Featured from '../featured/featured';
+import listData from '../list/listData';
+
 
 const App = () => {
 
@@ -13,8 +15,8 @@ const App = () => {
     <div className="App">
       <NavBar />
       <Featured  />
-      <List />
-      <List />
+      <List listType={listData}/>
+      <List listType={listData}/>
     </div>
   );
 }

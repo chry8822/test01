@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import sliderData from './sliderData';
+import './featured.scss'
 
 const Featured = () => {
 
@@ -26,11 +27,13 @@ const Featured = () => {
         }
 
         return (
-            <Slider {...settings}>
+            <Slider className='imgSlick'{...settings}>
                 {
                     sliderData.map((item:any,idx:number) => {
                         return(
-                            <img className='backImg' src={item.img}/>
+                            <div className='imgWrapper'>
+                                <img className='backImg' src={item.img}/>
+                            </div>
                         )
                     })
                 }

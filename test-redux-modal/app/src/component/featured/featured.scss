@@ -1,11 +1,9 @@
-.featured {
-    height: 80vh;
-}
-
-.sliderWrap {
-    
-}
-img {
-    height: 800px;
-    object-fit: cover;
+.imgWrapper{
+    height: 100%;
+    max-height: 700px;
+    .backImg {
+        min-height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
 }

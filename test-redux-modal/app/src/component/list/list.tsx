@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback,useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick';
 import { closeModal, openModal } from '../../redux/action/modal';
@@ -7,21 +7,32 @@ import './list.scss';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const List = () => {
+const List = ({listType}:any) => {
     const sliderRef = useRef<any>(null)
     const dispatch = useDispatch()
+    const [dragging, setDragging] = useState<boolean>(false);
+
+    const handleBeforeChange = useCallback(() => {
+        setDragging(true);
+    },[setDragging])
+    
+    const handleAfterChange = useCallback(() => {
+        setDragging(false);
+    },[setDragging])
+
 
     const renderSlider = () => {
         let settings = {
             centerPadding: '60px',
             dots: true,
-            Infinity: true,
-            speed: 100,
+            speed: 200,
             slidesToScroll: 1,
-            slidesToShow:4,
-            swipeToSlide: true,
+            slidesToShow:3,
             initialSlide: 0,
             arrows: false,
+            draggable: false,
+            beforChange: handleBeforeChange,
+            afterChange: handleAfterChange,
             appendDots: () => (
                 <div
                     style={{
@@ -32,19 +43,19 @@ const List = () => {
             ),
             responsive: [
                 {
-                    breakpoint: 1024,
+                    breakpoint: 1500,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                         infinite: true,
                         dots: true
                     }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 980,
                     settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
                         initialSlide: 2
                     }
                 },
@@ -59,7 +70,7 @@ const List = () => {
         }
         return (
             <Slider {...settings} ref={sliderRef}>
-                {renderSliderItem()}
+                {renderSliderItem(listType)}
             </Slider>
         )
 
@@ -69,17 +80,19 @@ const List = () => {
         dispatch(closeModal())
     }
 
-    const renderSliderItem = () => {
-        let data: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const renderSliderItem = (data:any) => {
         let render: any[] = [];
         data.forEach((item: any, idx: any) => {
             render.push(
                 <div className='itemWrapper'
                     key={idx}
                     onClick={() => {
-                        dispatch(openModal({ element: Modal, action: modalAction, content: item, title: item }))
+                        dispatch(openModal({ element: Modal, action: modalAction, content: item.fn, title: item.desc, video:item.gif }))
                     }}>
-                    <div className='listItem'>{item}</div>
+                    <img className='imgShow' src='/asset/인싸.jpg' alt="" />
+                    <div className='listItem'>{item.title}</div>
+                    <div>{item.time}</div>
+                    <div>{item.stack}</div>
                 </div>
             )
         })

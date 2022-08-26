@@ -26,20 +26,6 @@ const ModalWrap = styled.aside`
             transform: scale(0.7);
             transition: all 0.2s ease-in-out;
         }
-        .bottomPopup-enter {
-            transform: translateY(100%);
-        }
-        .bottomPopup-enter-active {
-            transform: translateY(0);
-            transition: all 0.7s cubic-bezier(0.8, 0, 0.33, 1);
-        }
-        .bottomPopup-exit {
-            transform: translateY(0);
-        }
-        .bottomPopup-exit-active {
-            transform: translateY(100%);
-            transition: all 0.7s cubic-bezier(0.8, 0, 0.33, 1);
-        }
     }
 `;
 

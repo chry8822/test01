@@ -10,10 +10,8 @@ const Modal = () => {
     return (
         <>
             <div className="popupWrap">
-                <div className="popupWrap__delete">
-                    <iframe id="ytplayer"  width="100%" height="100%"
-                    src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
-                    frameBorder={"0"}></iframe>
+                <div>
+                    <video className='popup_video' src={"/asset"+ modal.video} autoPlay loop muted={false} playsInline></video>
                 </div>
                 <div className="popupWrap__tit">
                     <h2><mark>{modal.title}</mark></h2>

@@ -9,6 +9,7 @@ export interface OpenModalType {
     actionType?: string | any,
     action?:(type: string, result?:any) => void,
     element:() => JSX.Element
+    video?:any
 }
 
 
