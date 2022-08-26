@@ -75,6 +75,7 @@ const logMsg = (msg, color) => {
     let div = document.createElement('div')
     div.innerHTML = msg;
     div.style.color = color;
+    // alert(div)
     document.getElementById('log')?.appendChild(div)
 }
 
@@ -95,16 +96,28 @@ function makeMonster() {
         monster[4],
     )
 }
+let heroName;
+// let hero = new Hero(prompt("write name"), 100, 10);
+function changeName(name) {
+  naheroNameme = name
+}
 
-let hero = new Hero(prompt("write name"), 100, 10);
+console.log(naheroNameme)
+
 logMsg(hero.name + "님이 모험을 시작합니다. 어디 까지 성장할까?");
+
+
 while (!gameover) {
     var monster = makeMonster();
     logMsg(monster.name + '을 마주쳤습니다. 전투가 시작됩니다', 'green');
-    battle = true; while (battle) {
-        hero.attack(monster);
-        if (monster.hp > 0) {
-            monster.attack(hero);
+
+        battle = true;  
+        if(battle) {
+            hero.attack(monster);
+            if (monster.hp > 0) {
+                monster.attack(hero);
+            }
         }
-    }
+        battle = false
+ 
 }

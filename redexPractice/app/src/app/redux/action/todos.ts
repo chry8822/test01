@@ -42,13 +42,8 @@ export type Todos = Todo[];
 export const initialState: Todos = [
     {
         id:0,
-        text:"typescript todolist",
+        text:"오늘의 todolist를 작성 해보세요.",
         isToggle:false
     },
-    {
-        id:1,
-        text:"typescript redux",
-        isToggle:false
-    }
     
 ]

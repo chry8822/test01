@@ -6,22 +6,21 @@ import { addTodo, removeTodo, toggleTodo } from '../redux/action/todos';
 import moment from 'moment'
 
 const Container = styled.div`
-width:100%;
-height:100%;
 display: flex;
-justify-content: center
+justify-content: center;
 `
 
 const Wrapper = styled.div`
-// width: 100%;
-// height: 100%;
+width:100vw;
+height: 100%;
 background-color: #f9df9d;
 font-family: 'Oswald', sans-serif;
 display:flex;
 flex-direction: column;
 position: absolute;
-// justify-content: space-between;
+justify-content: center;
 padding: 20px;
+box-sizing: border-box;
 `
 const Title = styled.div`
 font-size: 50px;
@@ -31,11 +30,13 @@ font-weigth: 700;
 const ListWrapper = styled.div`
 text-align: center;
 height: 100%;
-width:500px;
-padding: 20px 0 20px 0
+width: 90%;
+margin:0 auto;
+padding: 20px 0 20px 0;
 `         
 const AddList = styled.div`
-
+width:90%;
+margin:0 auto;
 `
 
 const Button = styled.button`
@@ -69,6 +70,7 @@ font-weight: 200
 `
 
 const TodoItem = styled.div`
+// width:100%;
 padding:10px;
 border: 1px solid black;
 margin-bottom: 10px;
@@ -79,12 +81,14 @@ line-height: 25px
 
 const ItemContent = styled.div`
 height:100%;
-width:400px;
+// max-width:400px;
 text-align:left;
 word-wrap: break-word;
 `
 
 const TitleContent = styled.div`
+width: 90%;
+margin: 0 auto;
 display: flex;
 justify-content:space-between;
 border-bottom: 1px solid black;
