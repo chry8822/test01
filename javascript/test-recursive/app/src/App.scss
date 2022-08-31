@@ -3,16 +3,50 @@ input[type="number"]::-webkit-inner-spin-button{
   appearance: none;
   margin: 0;
 }
+.title {
+  color: #1BCFEE;
+  font-family: "Electrolize","sans-serif";
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 10px #1bcfee;
+  text-transform: uppercase;
+  margin-top: 40px;
+}
+.timer {
+  color: #1BCFEE;
+  /* h1-h6 && th CSS */
+  font-family: "Electrolize", "sans-serif";
+  /* h1 */
+  font-size: 1rem;
+  /* h1-h6 && th CSS */
+  font-weight: bold;
+  /* h1 */
+  text-align: center;
+  /* Neon Yellow */
+  text-shadow: 0 0 10px #1BCFEE;
+  /* h1-h6 && th CSS */
+  text-transform: uppercase;
+}
+.stop{
+  color: #fae127;
+  text-shadow: 0 0 20px #fae127;
+  text-align: center;
+  font-family: "Electrolize","sans-serif";
+}
 .curTime {
+  font-family: "Electrolize","sans-serif";
   position: fixed;
   width: 100%;
   top: 0;
   left: 50%;
   font-size: 30px;
   font-weight: 500;
-  margin-top: 0;
+  margin-top: 20px;
   transform: translate(-50%);
-  background-color: #FFF;
+  text-shadow: 0 0 10px #FFF;
+  background-color: #282c34;
+  color: #fff;
 }
 
 .App {
@@ -58,10 +92,16 @@ input[type="number"]::-webkit-inner-spin-button{
   display: flex;
   
   input{
-    width: 30px;
+    font-family: "Electrolize","sans-serif";
+    text-align: center;
+    color: #FFF;
+    text-shadow: 0 0 10px #FFF;
+    width: 32px;
     border-style: none;
     border-radius: 5px;
-    margin: 0 5px 0 5px
+    margin: 0 5px 0 5px;
+    background-color: gray;
+
   }
 }
 
@@ -71,9 +111,24 @@ input[type="number"]::-webkit-inner-spin-button{
   justify-content: center;
   margin-top: 10px;
   input {
+    font-family: "Electrolize","sans-serif";
+    text-align: center;
+    background-color: black;
+    color: #1BCFEE;
+    /* h1-h6 && th CSS */
+    font-family: "Electrolize", "sans-serif";
+    /* h1 */
+    /* h1-h6 && th CSS */
+    font-weight: bold;
+    /* h1 */
+    text-align: center;
+    /* Neon Yellow */
+    text-shadow: 0 0 10px #1BCFEE;
+    /* h1-h6 && th CSS */
+    text-transform: uppercase;
     width: 50px;
     position: absolute;
-    box-shadow: 3px 3px 3px black;
+    box-shadow: 2px 1px 5px #1BCFEE;
     height: 20px;
   }
   input:first-child {

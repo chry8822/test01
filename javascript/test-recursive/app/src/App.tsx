@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     interval.current = setInterval(() => {
-      now = moment();
       setTotal(now.format("hh : mm : ss"))
     }, 1000)
     return () => clearInterval(interval.current)
@@ -43,18 +42,23 @@ function App() {
   const timerStart = (e: any) => {
     e.preventDefault()
     intervalTimer.current = setInterval(() => {
-        if(timerValue.sec > 0){
-          console.log("123")
-        setTimerValue({
-          sec: timerValue.sec - 1
+        setTimerValue((time:any)=>{
+          if(time.sec > 0){
+            setTimerShowFlag(true)
+            return {
+              ...time,
+              sec : time.sec - 1
+            }
+          }else if(time.sec <= 0){
+            setTimerShowFlag(false)
+            clearInterval(intervalTimer.current);
+            return {
+              ...time
+            }
+          }
         })
-      }else if (timerValue.sec <= 0){
-        clearInterval(intervalTimer.current);
-        return
-      }
       },1000)
   };
-
 
 
   const resetValue = () => {
@@ -66,7 +70,7 @@ function App() {
     })
   }
 
-
+console.log(timerValue)
   return (
     <div className="App">
       <p className='curTime'>
@@ -77,11 +81,13 @@ function App() {
         {/* <p>
           {hour} : {min} : {sec} 
         </p> */}
-        <div>timer</div>
+        <div className='title'>timer</div>
         {
-          timerShowFlag ?
-          (`${timerValue.hour}${timerValue.min}${timerValue.sec}`): 
-          <p>00 - 00 - 00</p>
+          <p className='timer'>
+            {timerValue.hour != "" ?(timerValue.hour < 10 ? "0" + timerValue.hour : timerValue.hour) : <span className='stop' >00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span> 
+            {timerValue.min !=  "" ?(timerValue.min < 10 ? "0" + timerValue.min : timerValue.min) : <span className='stop'>00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span> 
+            {timerValue.sec != "" ?(timerValue.sec < 10 ? "0" + timerValue.sec : timerValue.sec) : <span className='stop'>00</span>}
+          </p>
         }
         <div className='inputWarpper'>
           <form onSubmit={(e) => { timerStart(e) }}>
