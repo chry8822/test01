@@ -31,6 +31,8 @@ function App() {
     let value = e.target.value;
     if (value.length > 2) {
       value = Number(value.slice(0, 2))
+    }else{
+      
     }
     if (value) {
       setTimerValue((item: any) => {
@@ -73,6 +75,14 @@ function App() {
                 sec: "",
               }
             }
+          } else if (time.min > 0) {
+            console.log("min")
+            setValueFlag(false)
+            return {
+              ...time,
+              min: time.min - 1,
+              sec: 59
+            }
           } else if (time.hour > 0) {
             console.log("hour")
             setValueFlag(false)
@@ -82,14 +92,6 @@ function App() {
               min: 59,
               sec: 0
             }
-          }
-        } else if (time.min > 0) {
-          console.log("min")
-          setValueFlag(false)
-          return {
-            ...time,
-            min: time.min - 1,
-            sec: 59
           }
         }
       })
