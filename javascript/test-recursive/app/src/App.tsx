@@ -83,13 +83,13 @@ function App() {
               min: time.min - 1,
               sec: 59
             }
-          } else if (time.hour > 0) {
+          } if (time.hour > 0) {
             console.log("hour")
             setValueFlag(false)
             return {
               ...time,
               hour: time.hour - 1,
-              min: 59,
+              min: 60,
               sec: 0
             }
           }
@@ -121,8 +121,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <div className='title'>timer</div>
         <p className='timer'>
-          {timerValue.hour != "" || timerValue.hour > 0 ? (timerValue.hour < 10 ? "0" + timerValue.hour : timerValue.hour) : <span className='stop' >00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span>
-          {timerValue.min != "" || timerValue.min > 0 ? (timerValue.min < 10 ? "0" + timerValue.min : timerValue.min) : <span className='stop'>00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span>
+          {timerValue.hour != "" || timerValue.hour > 0 ? (timerValue.hour < 10 ? "0" + timerValue.hour : timerValue.hour ) : <span className='stop' >00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span>
+          {timerValue.min != "" || timerValue.min > 0 ? (timerValue.min < 10 ? "0" + timerValue.min : (timerValue.min === 60 ? 59 : timerValue.min) ) : <span className='stop'>00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span>
           {timerValue.sec != "" || timerValue.sec > 0 ? (timerValue.sec < 10 ? "0" + timerValue.sec : timerValue.sec) : <span className='stop'>00</span>}
         </p>
         <div className='inputWarpper'>
