@@ -45,8 +45,12 @@ input[type="number"]::-webkit-inner-spin-button{
   margin-top: 20px;
   transform: translate(-50%);
   text-shadow: 0 0 10px #FFF;
-  background-color: #282c34;
   color: #fff;
+}
+body{
+  background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat;
+  background-size:cover;
+  margin:0
 }
 
 .App {
@@ -59,13 +63,59 @@ input[type="number"]::-webkit-inner-spin-button{
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .logo {
+    font-family: "Electrolize","sans-serif";
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  .logo b{
+    font: 400 19vh;
+    color: #fee;
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #1BCFEE, 0 0 0.5em #1BCFEE, 0 0 0.1em #1BCFEE, 0 10px 3px #000;
+  }
+  .logo b span{
+    animation: blink linear infinite 2s;
+  }
+  .logo b span:nth-of-type(2){
+    animation: blink linear infinite 3s;
+  }
+}
+
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
   }
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -110,11 +160,17 @@ input[type="number"]::-webkit-inner-spin-button{
   position: relative;
   justify-content: center;
   margin-top: 10px;
+  .inputBtn {
+    background-color: transparent;
+    border: 1px solid #fae127;
+  }
   input {
+    // padding: 5px 8px 5px 8px;
+    opacity: 0.6;
     font-family: "Electrolize","sans-serif";
     text-align: center;
-    background-color: black;
-    color: #1BCFEE;
+    // background-color: rgb(20, 20, 20);
+    color: #fae127;
     /* h1-h6 && th CSS */
     font-family: "Electrolize", "sans-serif";
     /* h1 */
@@ -123,13 +179,14 @@ input[type="number"]::-webkit-inner-spin-button{
     /* h1 */
     text-align: center;
     /* Neon Yellow */
-    text-shadow: 0 0 10px #1BCFEE;
+    // text-shadow: 0 0 30px #fae127;
     /* h1-h6 && th CSS */
     text-transform: uppercase;
-    width: 50px;
+    width: 60px;
     position: absolute;
-    box-shadow: 2px 1px 5px #1BCFEE;
-    height: 20px;
+    height: 30px;
+    transition: all 0.3s;
+    border-radius: 3px;
   }
   input:first-child {
     left: 0;
@@ -141,5 +198,11 @@ input[type="number"]::-webkit-inner-spin-button{
     margin-left: 3px;
     margin-top: 3px;
     box-shadow: none;
+  }
+  input:hover {
+    opacity: 1;
+    color: #61dafb;
+    box-shadow: 1px 0px 8px #61dafb;
+    border: 1px solid #61dafb;
   }
 }

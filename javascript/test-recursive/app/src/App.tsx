@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useReducer, useCallback, useMemo } from 'react';
-import logo from './logo.svg';
+import logo from './Cyberpunk_2077_logo.svg';
 import './App.scss';
 import moment from 'moment';
+import { Helmet } from 'react-helmet';
 
 function App() {
 
@@ -79,7 +80,7 @@ function App() {
                   ...time,
                   hour: time.hour - 1,
                   min: 60,
-                  sec: 0,
+                  sec: 59,
                 };
               }
             } else if (time.min > 0) {
@@ -105,15 +106,22 @@ function App() {
       sec: "",
     })
   }, [{ ...timerValue }])
-
+  // {property="og:title" content="cyberTimer"},
+  // {property="og:url" content="https://pinktimer.web.app/"},
+  // {property="og:image" content="./123.png"},
+  // {property="og:description" content="current time & timer"}
 
   return (
     <div className="App">
+      <Helmet>
+        <title>Cymer</title>
+     
+      </Helmet>
       <p className='curTime'>
         {total}
       </p>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div className="logo"><b>Cy<span>be</span>rP<span>u</span>nk</b></div>
         <div className='title'>timer</div>
         <p className='timer'>
           {timerValue.hour != "" || timerValue.hour > 0 ? (timerValue.hour < 10 ? "0" + timerValue.hour : timerValue.hour ) : <span className='stop' >00</span>}<span className={timerShowFlag ? "" : "stop"}> - </span>
@@ -140,8 +148,8 @@ function App() {
               />
             </div>
             <div className='btnWrapper'>
-              <input type="submit" value={"start"} />
-              <input type="button" value={"reset"} onClick={resetValue} />
+              <input className='inputBtn' type="submit" value={"start"} />
+              <input className='inputBtn' type="button" value={"reset"} onClick={resetValue} />
             </div>
           </form>
         </div>
