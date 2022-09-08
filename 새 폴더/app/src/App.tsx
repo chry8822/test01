@@ -4,8 +4,12 @@ import './App.css';
 import CountUp from 'react-countup';
 
 function App() {
-  const observerRef = useRef(null)
+  const observerRef = useRef<any>(null)
 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+    setCountFlag(true)
+  },[])
   useEffect(()=>{
     if(observerRef.current){
       let settings = {
@@ -20,16 +24,19 @@ function App() {
   },[observerRef.current])
 
   const callback = (entries:any, observer:any) => {
+    console.log(entries)
     entries.forEach((entry:any) => {
       if(entry.isIntersecting){
-        setCountFlag(true)
+        setCountFlag(false)
         console.log("해제")
         observer.unobserve(observerRef.current)
       }
     })
   }
 
-  const [countFlag, setCountFlag] = useState<boolean>(false)
+  let test:any = observerRef.current && observerRef.current.getBoundingClientRect();
+
+  const [countFlag, setCountFlag] = useState<boolean>(true)
   console.log(countFlag)
    function numberWithCommas(number: number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -39,18 +46,20 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {
-          new Array(10).fill(<div className='dummy'>카운트업 && 인터셉터 옵저버 테스트.</div>).map((item:any) => {
-            return item
+          // @ts-ignore
+          Array(10).fill().map((item:any, idx:number) => {
+            return (
+              <div key={idx} className='dummy'>카운트업 && 인터셉터 옵저버 테스트.</div>
+            )
           })
         }
         <p>
           <div ref={observerRef}>
             <CountUp 
-              start={123123}
-              end={102423423453}
-              duration={3}
+              start={10}
+              end={10242232894756289343}
+              duration={2}
               separator=","
-              delay={0}
               enableScrollSpy={countFlag}
             />
           </div>
