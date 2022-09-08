@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 
 function App() {
   const observerRef = useRef<any>(null)
-
+  console.log("test")
   useEffect(()=>{
     window.scrollTo(0,0)
     setCountFlag(true)
